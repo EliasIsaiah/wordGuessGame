@@ -1,23 +1,67 @@
 body {
     /* background: black url('./_6121170.JPG') top center no-repeat fixed; */
-    background: black url("../images/wordGameBackground1080.png") top center no-repeat fixed;
+    background: black url("../images/wordGameBackground1080.png") no-repeat fixed;
+    font-weight: 800;
+    overflow: hidden;
 }
 
 
 div.wrapper {
-    width: 60%;
+    width: 80%;
     margin: auto;
     background: rgba(0,0,0,0);
     color: white;
     display: grid;
-    grid-template-rows: 100%;
+    grid-template-rows: minmax(auto, 15%) 1fr 1fr;
     grid-template-columns: 100%;
+    align-items: center;
+
+    -webkit-text-stroke: 1px black;
+    /* text-shadow:
+        3px 3px 0 #000,
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+       -1px 1px 0 #000,
+        1px 1px 0 #000; */
+    /* grid-row-gap: 1rem; */
+}
+
+div.gridBlock, div.title {
+    font-family: "Helvetica";
+}
+
+div.gridBlock {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    grid-row: row 2;
+}
+
+div.title {
+    /* background:inherit; */
+    /* font-family: "Georgia"; */
+    font-size: 1rem;
+    text-align: center;
+    grid-row: row;
 }
 
 div.game {
-    justify-self: center;
-    align-self: center;
-    height: 100%;
-    width: 100%;
-    background: rgba( 255, 0, 0, .5);
+    /* background: black; */
+    /* font-family: "Georgia"; */
+    font-size: 2rem;
+    padding: 10px;
+    grid-row: row 2;
+    grid-column: col 1;
 }
+
+div.content {
+    /* background: black; */
+    /* font-family: "Georgia"; */
+    font-size: 2rem;
+    padding: 10px;
+    grid-row: row 2
+    grid-column: col 2;
+}
+
+/* marginTop {
+    margin-top: 10%;
+} */
