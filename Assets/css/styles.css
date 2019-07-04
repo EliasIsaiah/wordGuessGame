@@ -1,0 +1,22 @@
+body {
+    /* background: black url('./_6121170.JPG') top center no-repeat fixed; */
+    background: black url("../images/wordGameBackground1080.png") top center no-repeat fixed;
+}
+
+
+div.wrapper {
+    width: 60%;
+    margin: auto;
+    background: rgba(0,0,0,0);
+    color: white;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 100%;
+}
+
+div.game {
+    justify-self: center;
+    align-self: center;
+    height: 50%;
+    background: rgba( 255, 0, 0, .5);
+}
