@@ -31,8 +31,8 @@ div.gridBlock, div.title {
 }
 
 div.gridBlock {
+    background-color: rgba(255, 255, 255, .4);
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
     grid-row: row 2;
 }
 
