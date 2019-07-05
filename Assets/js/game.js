@@ -10,6 +10,6 @@ window.onload = function() {
 
     for( let i = 0; i < rwordLength; i++ )
     {
-        document.getElementsByClassName('content').innerHTML() += "_ ";
+        document.getElementsByClassName('content').innerHTML += "_ ";
     }
 }
