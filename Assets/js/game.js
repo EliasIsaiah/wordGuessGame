@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     
     let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
     
@@ -8,13 +8,13 @@ window.onload = function() {
 
     let rwordLength = randomWord.length;
     
-    document.getElementsByClassName('content').innerHTML = '<p>'
+    document.getElementsByClassName('div.content').innerHTML = '<p>'
 
     for( let i = 0; i < rwordLength; i++ )
     {
-        document.getElementsByClassName('content').innerHTML += '_ ';
+        document.getElementsByClassName('div.content').innerHTML += '_ ';
         
     }
-    document.getElementsByClassName('content').innerHTML += '</p>';
-    console.log(document.getElementsByClassName('content').innerHTML);
-}
+    document.getElementsByClassName('div.content').innerHTML += '</p>';
+    console.log(document.getElementsByClassName('div.content').innerHTML);
+});
