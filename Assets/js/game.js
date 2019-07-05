@@ -1,6 +1,6 @@
 window.onload = function() {
     
-    let words = [mountain, waterfall, boulder, goat, sheep, glacier, alpaca, trail, tree, snowfall, volcano, vista, hiking, underbrush, foliage, fauna];
+    let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
     
     let randomWord = words[Math.floor(Math.random()*myArray.length)];
     
