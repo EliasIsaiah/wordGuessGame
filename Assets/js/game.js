@@ -7,9 +7,14 @@ window.onload = function() {
     console.log( randomWord );
 
     let rwordLength = randomWord.length;
+    
+    document.getElementsByClassName('content').innerHTML = '<p>'
 
     for( let i = 0; i < rwordLength; i++ )
     {
-        document.getElementsByClassName('content').innerHTML += "_ ";
+        document.getElementsByClassName('content').innerHTML += '_ ';
+        
     }
+    document.getElementsByClassName('content').innerHTML += '</p>';
+    console.log(document.getElementsByClassName('content').innerHTML);
 }
