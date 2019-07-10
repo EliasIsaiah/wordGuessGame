@@ -76,7 +76,7 @@ $(document).ready(function () {
 
                 index = jQuery.inArray(game.$input, game.$randomWord);
 
-                swapLetter(index, input);
+                // swapLetter(index, input);
             }
             else {
                 return;
