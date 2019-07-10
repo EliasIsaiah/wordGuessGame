@@ -95,9 +95,14 @@ $(document).ready(function () {
             as the user inputs letters to the keyboard check:
                 >is the inputted character contained in the random word?
                     >remember to check each character of the random word as letters are used multiple times (i.e. vowels)
+                    >this looks like a job for recursion. see RECURSION
                 >if the typed letter IS contained in the random word, then do:
                     >swap the blank (underscore) character(s) in the wordGuess string for the guessed letter(s)
                     >check if wordGuess matches randomWord
+
+                RECURSION:
+                    
+                }
         */
     }
 
