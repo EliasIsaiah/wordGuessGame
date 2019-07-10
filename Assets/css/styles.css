@@ -23,11 +23,11 @@ div.wrapper {
 }
 
 
-div.gridBlock {
+/* div.gridBlock {
     background-color: rgba(255, 255, 255, .4);
     grid-template-columns: 1fr 1fr;
     grid-row: row 2;
-}
+} */
 
 div.title {
     /* font-family: "Georgia"; */
@@ -43,7 +43,7 @@ div.content {
     grid-row-start: 3;
     text-align: center;
     justify-content: top;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(87, 87, 87, 0.4);
 }
 
 div.feedback {
