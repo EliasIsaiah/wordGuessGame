@@ -1,33 +1,51 @@
+
 $(document).ready(function () {
+
     function game() {
 
-        let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
+        let game = {
+            words: ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'],
+            $randomWord: "",
+            $rWordLength: 0,
+            $wordGuess: ""
+        }
 
-        let $randomWord = getRandomWord();
-        console.log($randomWord);
+        getRandomWord();
+        console.log(game.$randomWord);
+        // console.log(game.$rWordLength);
+        // let $rWordLength = $randomWord.length;
 
-        let $rwordLength = $randomWord.length;
 
         $('div.content').innerHTML = "";
 
-        let $wordGuess = '';
+        // let game.$wordGuess = '';
 
-        for (let i = 0; i < $rwordLength; i++) {
-            $wordGuess += "_ ";
+        for (let i = 0; i < game.$rWordLength; i++) {
+            game.$wordGuess += "_";
             // document.getElementById('gfID').innerHTML += '_ ';
         }
-        $('div.content').html($wordGuess);
-        console.log($('div.content').html());
+        // console.log(game.$wordGuess);
+
+        $('div.content').html(game.$wordGuess);
+        // console.log($('div.content').html());
 
         $(document).keyup(function (event) {
 
             //get the user input
-            let $input = event.key;
+            let $input = event.key.toLowerCase();
             console.log($input);
+            let index = jQuery.inArray($input, game.$randomWord);
+            if( index > -1 ) {
+                console.log("index");
+            } else {
+                console.log("not in array");
+            }
         });
+        
 
         function getRandomWord() {
-            return words[Math.floor(Math.random() * words.length)];
+            game.$randomWord = game.words[Math.floor(Math.random() * game.words.length)];
+            game.$rWordLength = game.$randomWord.length;
         }
         //pseudo-code for word guessing game
         /*

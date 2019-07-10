@@ -44,6 +44,7 @@ div.content {
     text-align: center;
     justify-content: top;
     background: rgba(87, 87, 87, 0.4);
+    letter-spacing: .5rem;
 }
 
 div.feedback {
