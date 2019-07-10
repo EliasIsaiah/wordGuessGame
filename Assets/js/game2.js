@@ -59,13 +59,16 @@ $(document).ready(function () {
         //function newWordGuess creates a new string that contains the guessed letter and updates the content with the new string
         function newWordGuess(input) {
             let newString = "";
-            $game.randomWord.forEach(function (value) {
+            let array = ["a", "b", "c", "d"];
+            // game.$randomWord.forEach(function (value) {
+            array.forEach(function (value) {
+
                 if (value === input) {
                     newString += input;
                 } else {
                     newString += "_";
                 }
-            })
+            });
             console.log(game.$wordGuess);
             return newString;
         }
