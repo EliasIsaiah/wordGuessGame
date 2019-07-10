@@ -1,8 +1,6 @@
 $(document).ready(function () {
     function game() {
 
-        document.addEventListener
-
         let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
 
         let $randomWord = words[Math.floor(Math.random() * words.length)];
@@ -11,18 +9,21 @@ $(document).ready(function () {
 
         let $rwordLength = $randomWord.length;
 
-        document.querySelector('div.content').innerHTML = '';
+        document.querySelector('div.content').innerHTML = "";
 
         let $wordGuess = '';
 
         for (let i = 0; i < $rwordLength; i++) {
-            $wordGuess += '_ ';
+            $wordGuess += "_ ";
             // document.getElementById('gfID').innerHTML += '_ ';
-
         }
         $('div.content').html($wordGuess);
         console.log($('div.content').html());
 
+        $(document).keyup(function (event) {
+            let $input = event.key;
+            console.log($input);
+        });
         //pseudo-code for word guessing game
         /*
             listen for keyboard event
