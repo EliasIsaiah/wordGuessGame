@@ -4,10 +4,11 @@ $(document).ready(function () {
     function game() {
 
         let game = {
-            words: ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'],
+            words: ["mountain", "waterfall", "boulder", "goat", "sheep", "glacier", "alpaca", "trail", "tree", "snowfall", "volcano", "vista", "hiking", "underbrush", "foliage", "fauna"],
             $randomWord: "",
             $rWordLength: 0,
-            $wordGuess: ""
+            $wordGuess: "",
+            $input: "",
         }
 
         getRandomWord();
@@ -16,40 +17,44 @@ $(document).ready(function () {
         // let $rWordLength = $randomWord.length;
 
 
-        $('div.content').innerHTML = "";
+        $("div.content").innerHTML = "";
 
-        // let game.$wordGuess = '';
+        // let game.$wordGuess = ";
 
         for (let i = 0; i < game.$rWordLength; i++) {
             game.$wordGuess += "_";
-            // document.getElementById('gfID').innerHTML += '_ ';
+            // document.getElementById("gfID").innerHTML += "_ ";
         }
         // console.log(game.$wordGuess);
 
-        $('div.content').html(game.$wordGuess);
-        // console.log($('div.content').html());
+        $("div.content").html(game.$wordGuess);
+        // console.log($("div.content").html());
 
         $(document).keyup(function (event) {
 
             //get the user input
-            let $input = event.key.toLowerCase();
+            game.$input = event.key.toLowerCase();
 
-            console.log($input);
+            console.log(game.$input);
 
-            let index = jQuery.inArray($input, game.$randomWord);
-
-            if( index > -1 ) {
-
-                console.log("index");
-                swapLetter(index, $input);
-
-            } else {
-
-                console.log("not in array");
-
-            }
+            let index = jQuery.inArray(game.$input, game.$randomWord);
+            swapLetter(index, game.$input);
+            // recursiveSwap($input);
         });
-        
+
+
+        // function recursiveSwap($input) {
+        //     let index = jQuery.inArray($input, game.$randomWord);
+        //     if (index > -1) {
+        //         console.log("index");
+        //         swapLetter(index, $input);
+        //         // recursiveSwap($input);
+        //     }
+        //     else {
+        //         console.log("not in array");
+        //         return;
+        //     }
+        // }
 
         function getRandomWord() {
             game.$randomWord = game.words[Math.floor(Math.random() * game.words.length)];
@@ -57,10 +62,28 @@ $(document).ready(function () {
         }
 
         function swapLetter(index, input) {
+            if (index > -1) {
+                let firstHalf = game.$wordGuess.substring(0, index)
+
+                let secondHalf = game.$wordGuess.substring(index++, game.$rWordLength--);
+
+                console.log(index);
+                console.log(secondHalf);
+
+                game.$wordGuess = firstHalf + input + secondHalf;
+
+                $("div.content").html(game.$wordGuess);
+
+                index = jQuery.inArray(game.$input, game.$randomWord);
+
+                swapLetter(index, input);
+            }
+            else {
+                return;
+            }
             // console.log(index);
-            console.log(game.$wordGuess.charAt(index));
+            // console.log(game.$wordGuess.charAt(index));
             // game.$wordGuess.charAt(index) = input.charAt(0);
-            // $('div.content').html(game.$wordGuess);
             // console.log(game.$wordGuess.charAt(index));
         }
         //pseudo-code for word guessing game
