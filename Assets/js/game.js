@@ -3,13 +3,13 @@ $(document).ready(function () {
 
         document.addEventListener
 
-        let $words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
+        let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
 
         let $randomWord = words[Math.floor(Math.random() * words.length)];
 
-        console.log(randomWord);
+        console.log($randomWord);
 
-        let $rwordLength = randomWord.length;
+        let $rwordLength = $randomWord.length;
 
         document.querySelector('div.content').innerHTML = '';
 
@@ -20,8 +20,8 @@ $(document).ready(function () {
             // document.getElementById('gfID').innerHTML += '_ ';
 
         }
-        $('div.content').innerHTML = wordGuess;
-        console.log($('div.content').innerHTML);
+        $('div.content').html($wordGuess);
+        console.log($('div.content').html());
 
         //pseudo-code for word guessing game
         /*
@@ -36,7 +36,7 @@ $(document).ready(function () {
                     >swap the blank (underscore) character(s) in the wordGuess string for the guessed letter(s)
                     >check if wordGuess matches randomWord
         */
-
-
     }
+
+    game();
 });
