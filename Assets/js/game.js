@@ -3,13 +3,12 @@ $(document).ready(function () {
 
         let words = ['mountain', 'waterfall', 'boulder', 'goat', 'sheep', 'glacier', 'alpaca', 'trail', 'tree', 'snowfall', 'volcano', 'vista', 'hiking', 'underbrush', 'foliage', 'fauna'];
 
-        let $randomWord = words[Math.floor(Math.random() * words.length)];
-
+        let $randomWord = getRandomWord();
         console.log($randomWord);
 
         let $rwordLength = $randomWord.length;
 
-        document.querySelector('div.content').innerHTML = "";
+        $('div.content').innerHTML = "";
 
         let $wordGuess = '';
 
@@ -21,9 +20,15 @@ $(document).ready(function () {
         console.log($('div.content').html());
 
         $(document).keyup(function (event) {
+
+            //get the user input
             let $input = event.key;
             console.log($input);
         });
+
+        function getRandomWord() {
+            return words[Math.floor(Math.random() * words.length)];
+        }
         //pseudo-code for word guessing game
         /*
             listen for keyboard event
