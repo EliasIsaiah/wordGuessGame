@@ -33,12 +33,20 @@ $(document).ready(function () {
 
             //get the user input
             let $input = event.key.toLowerCase();
+
             console.log($input);
+
             let index = jQuery.inArray($input, game.$randomWord);
+
             if( index > -1 ) {
+
                 console.log("index");
+                swapLetter(index, $input);
+
             } else {
+
                 console.log("not in array");
+
             }
         });
         
@@ -46,6 +54,14 @@ $(document).ready(function () {
         function getRandomWord() {
             game.$randomWord = game.words[Math.floor(Math.random() * game.words.length)];
             game.$rWordLength = game.$randomWord.length;
+        }
+
+        function swapLetter(index, input) {
+            // console.log(index);
+            console.log(game.$wordGuess.charAt(index));
+            // game.$wordGuess.charAt(index) = input.charAt(0);
+            // $('div.content').html(game.$wordGuess);
+            // console.log(game.$wordGuess.charAt(index));
         }
         //pseudo-code for word guessing game
         /*
