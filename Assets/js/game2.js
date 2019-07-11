@@ -18,6 +18,18 @@ $(document).ready(function () {
         updateContent: function (content) {
             $("div.content").html(content);
         },
+
+        newWordGuess: function (input) {
+
+            let wordArr = this.randomWord.split();
+            let guessArr = this.wordGuess.split();
+            console.log(wordArr);
+            console.log(guessArr);
+        
+            for(let i = 0; i < this.rWordLength; i++) {
+                    console.log(i);
+                };
+        },
     }
 
     //generate a randowm word from the array by calling the getRandomWord(); function/method
@@ -52,7 +64,7 @@ $(document).ready(function () {
         if (index < 0) {
             console.log("letter is not contained in the array");
         } else {
-            game.wordGuess = newWordGuess(game.$input);
+            game.wordGuess = game.newWordGuess(game.$input);
             game.updateContent(game.wordGuess);
             // swapLetters(index, game.$input);
         }
@@ -61,20 +73,6 @@ $(document).ready(function () {
     //function getRandowmWord() generates a random word when called and assigns it to the appropriate game object variables
 
     //function newWordGuess creates a new string that contains the guessed letter and updates the content with the new string
-    function newWordGuess(input) {
-        let newString = "";
-        let array = ["a", "b", "c", "d"];
-        // game.$randomWord.forEach(function (value) {
-        array.forEach(function (value) {
 
-            if (value === input) {
-                newString += input;
-            } else {
-                newString += "_";
-            }
-        });
-        console.log(game.$wordGuess);
-        return newString;
-    }
 
 });
