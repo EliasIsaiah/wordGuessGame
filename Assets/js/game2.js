@@ -25,10 +25,15 @@ $(document).ready(function () {
             let guessArr = this.wordGuess.split();
             console.log(wordArr);
             console.log(guessArr);
-        
-            for(let i = 0; i < this.rWordLength; i++) {
-                    console.log(i);
-                };
+
+            for (let i = 0; i < this.rWordLength; i++) {
+                if (wordArr[i] === input) {
+                    guessArr[i] = input;
+                }
+            };
+            
+            this.wordGuess = guessArr.forEach
+            console.log(guessArr);
         },
     }
 
@@ -64,7 +69,7 @@ $(document).ready(function () {
         if (index < 0) {
             console.log("letter is not contained in the array");
         } else {
-            game.wordGuess = game.newWordGuess(game.$input);
+            game.wordGuess = game.newWordGuess(game.input);
             game.updateContent(game.wordGuess);
             // swapLetters(index, game.$input);
         }
