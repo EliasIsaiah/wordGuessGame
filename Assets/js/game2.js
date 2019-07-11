@@ -24,19 +24,19 @@ $(document).ready(function () {
     game.getRandomWord();
 
     //log the generated randowm word for debugging/testing purposes
-    console.log(this.randomWord);
+    console.log(game.randomWord);
 
     //set the initial game content html content to nothing
     $("div.content").html("");
 
     /*This for loop gets the length of the randomly selected word and creates the initial $wordGuess string object 
     with the appropriate number of "_" to indicate how long the word to be guessed is */
-    for (let i = 0; i < this.rWordLength; i++) {
-        this.wordGuess += "_";
+    for (let i = 0; i < game.rWordLength; i++) {
+        game.wordGuess += "_";
         // document.getElementById("gfID").innerHTML += "_ ";
     }
 
-    updateContent(this.wordGuess);
+    game.updateContent(game.wordGuess);
 
     //set the html of the game content div to the newly-created wordGuess string
 
@@ -45,16 +45,16 @@ $(document).ready(function () {
     $(document).keyup(function (event) {
 
         //get the user input and normalize it
-        this.input = event.key.toLowerCase();
+        game.input = event.key.toLowerCase();
 
         //index = -1 if the input is not contained in the array, and another value if it is
-        let index = jQuery.inArray(this.input, this.randomWord);
+        let index = jQuery.inArray(game.input, game.randomWord);
         if (index < 0) {
             console.log("letter is not contained in the array");
         } else {
-            this.wordGuess = newWordGuess(this.$input);
-            updateContent(this.wordGuess);
-            // swapLetters(index, this.$input);
+            game.wordGuess = newWordGuess(game.$input);
+            game.updateContent(game.wordGuess);
+            // swapLetters(index, game.$input);
         }
     });
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
     function newWordGuess(input) {
         let newString = "";
         let array = ["a", "b", "c", "d"];
-        // this.$randomWord.forEach(function (value) {
+        // game.$randomWord.forEach(function (value) {
         array.forEach(function (value) {
 
             if (value === input) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
                 newString += "_";
             }
         });
-        console.log(this.$wordGuess);
+        console.log(game.$wordGuess);
         return newString;
     }
 
