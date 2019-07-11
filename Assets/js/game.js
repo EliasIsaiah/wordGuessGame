@@ -1,110 +1,94 @@
-
 $(document).ready(function () {
 
-    function game() {
 
-        let game = {
-            words: ["mountain", "waterfall", "boulder", "goat", "sheep", "glacier", "alpaca", "trail", "tree", "snowfall", "volcano", "vista", "hiking", "underbrush", "foliage", "fauna"],
-            $randomWord: "",
-            $rWordLength: 0,
-            $wordGuess: "",
-            $input: "",
-        }
+    let game = {
+        words: ["mountain", "waterfall", "boulder", "goat", "sheep",
+            "glacier", "alpaca", "trail", "tree", "snowfall", "volcano",
+            "vista", "hiking", "underbrush", "foliage", "fauna"],
+        randomWord: "",
+        rWordLength: 0,
+        wordGuess: "",
+        // input: "",
 
-        getRandomWord();
-        console.log(game.$randomWord);
-        // console.log(game.$rWordLength);
-        // let $rWordLength = $randomWord.length;
+        getRandomWord: function () {
+            this.randomWord = this.words[Math.floor(Math.random() * this.words.length)];
+            this.rWordLength = this.randomWord.length;
+        },
 
+        updateContent: function (content) {
+            $("div.content").html(content);
+        },
 
-        $("div.content").innerHTML = "";
-
-        // let game.$wordGuess = ";
-
-        for (let i = 0; i < game.$rWordLength; i++) {
-            game.$wordGuess += "_";
-            // document.getElementById("gfID").innerHTML += "_ ";
-        }
-        // console.log(game.$wordGuess);
-
-        $("div.content").html(game.$wordGuess);
-        // console.log($("div.content").html());
-
-        $(document).keyup(function (event) {
-
-            //get the user input
-            game.$input = event.key.toLowerCase();
-
-            console.log(game.$input);
-
-            let index = jQuery.inArray(game.$input, game.$randomWord);
-            swapLetter(index, game.$input);
-            // recursiveSwap($input);
-        });
-
-
-        // function recursiveSwap($input) {
-        //     let index = jQuery.inArray($input, game.$randomWord);
-        //     if (index > -1) {
-        //         console.log("index");
-        //         swapLetter(index, $input);
-        //         // recursiveSwap($input);
-        //     }
-        //     else {
-        //         console.log("not in array");
-        //         return;
-        //     }
-        // }
-
-        function getRandomWord() {
-            game.$randomWord = game.words[Math.floor(Math.random() * game.words.length)];
-            game.$rWordLength = game.$randomWord.length;
-        }
-
-        function swapLetter(index, input) {
-            if (index > -1) {
-                let firstHalf = game.$wordGuess.substring(0, index)
-
-                let secondHalf = game.$wordGuess.substring(index++, game.$rWordLength--);
-
-                console.log(index);
-                console.log(secondHalf);
-
-                game.$wordGuess = firstHalf + input + secondHalf;
-
-                $("div.content").html(game.$wordGuess);
-
-                index = jQuery.inArray(game.$input, game.$randomWord);
-
-                // swapLetter(index, input);
-            }
-            else {
-                return;
-            }
-            // console.log(index);
-            // console.log(game.$wordGuess.charAt(index));
-            // game.$wordGuess.charAt(index) = input.charAt(0);
-            // console.log(game.$wordGuess.charAt(index));
-        }
-        //pseudo-code for word guessing game
-        /*
-            listen for keyboard event
-            on keyboard event start the game
-                >initialize the randomly chosen word to guess
-                >generate the blank slots where the guessed letters will go
-            as the user inputs letters to the keyboard check:
-                >is the inputted character contained in the random word?
-                    >remember to check each character of the random word as letters are used multiple times (i.e. vowels)
-                    >this looks like a job for recursion. see RECURSION
-                >if the typed letter IS contained in the random word, then do:
-                    >swap the blank (underscore) character(s) in the wordGuess string for the guessed letter(s)
-                    >check if wordGuess matches randomWord
-
-                RECURSION:
-                    
-                }
-        */
     }
 
-    game();
+    function newWordGuess(input) {
+
+        let wordArr = game.randomWord.split("");
+        let guessArr = game.wordGuess.split("");
+        console.log("wordArr: " + wordArr);
+        console.log("guessArr: " + guessArr);
+        console.log("input: " + input);
+
+
+        for (let i = 0; i < game.rWordLength; i++) {
+            console.log("wordArr[ " + i + " ] = " + wordArr[i]);
+            console.log("wordArr[i] === input = " + wordArr[i] === input);
+            if (wordArr[i] === input) {
+                guessArr[i] = input;
+                console.log("character replaced");
+            }
+        };
+
+        game.wordGuess = guessArr.join("");
+        console.log("game.wordGuess: " + game.wordGuess);
+    }
+
+    //generate a randowm word from the array by calling the getRandomWord(); function/method
+    game.getRandomWord();
+
+    //log the generated randowm word for debugging/testing purposes
+    console.log(game.randomWord);
+
+    //set the initial game content html content to nothing
+    $("div.content").html("");
+
+    /*This for loop gets the length of the randomly selected word and creates the initial $wordGuess string object 
+    with the appropriate number of "_" to indicate how long the word to be guessed is */
+    for (let i = 0; i < game.rWordLength; i++) {
+        game.wordGuess += "_";
+        // document.getElementById("gfID").innerHTML += "_ ";
+    }
+
+    game.updateContent(game.wordGuess);
+
+    //set the html of the game content div to the newly-created wordGuess string
+
+
+    //function utilizing and event listener to record the player's keypresses
+    $(document).keyup(function (event) {
+
+        console.log("game.wordGuess: " + game.wordGuess);
+
+        //get the user input and normalize it
+        input = event.key.toLowerCase();
+
+        //index = -1 if the input is not contained in the array, and another value if it is
+        let index = jQuery.inArray(input, game.randomWord);
+        if (index < 0) {
+            console.log("letter is not contained in the array");
+        } else {
+            newWordGuess(input);
+
+            console.log("game.wordGuess: " + game.wordGuess);
+
+            game.updateContent(game.wordGuess);
+            // swapLetters(index, input);
+        }
+    });
+
+    //function getRandowmWord() generates a random word when called and assigns it to the appropriate game object variables
+
+    //function newWordGuess creates a new string that contains the guessed letter and updates the content with the new string
+
+
 });

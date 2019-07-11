@@ -24,3 +24,6 @@ This is a simple webpage that contains a few different elements for displaying f
 
     Additionally there may be feedback as to whether or not the letter that the player that the player guessed is contained in the random word (for added clarity to the player).
 
+This is a word guessing game
+
+at the start
