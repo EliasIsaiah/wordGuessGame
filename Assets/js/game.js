@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     let game = {
         words: ["mountain", "waterfall", "boulder", "goat", "sheep",
             "glacier", "alpaca", "trail", "tree", "snowfall", "volcano",
@@ -18,6 +17,16 @@ $(document).ready(function () {
 
         updateContent: function (content) {
             $("div.content").html(content);
+        },
+
+        initGame: function (game) {
+
+            this.getRandomWord();
+            
+            for (let i = 0; i < game.rWordLength; i++) {
+                game.wordGuess += "_";
+            }
+            game.updateContent(game.wordGuess);
         },
 
         newWordGuess: function (input) {
@@ -85,12 +94,7 @@ $(document).ready(function () {
 
     /*This for loop gets the length of the randomly selected word and creates the initial $wordGuess string object 
     with the appropriate number of "_" to indicate how long the word to be guessed is */
-    for (let i = 0; i < game.rWordLength; i++) {
-        game.wordGuess += "_";
-        // document.getElementById("gfID").innerHTML += "_ ";
-    }
-
-    game.updateContent(game.wordGuess);
+    initGame(game);
 
     //set the html of the game content div to the newly-created wordGuess string
 
@@ -114,3 +118,4 @@ $(document).ready(function () {
 
 
 });
+
