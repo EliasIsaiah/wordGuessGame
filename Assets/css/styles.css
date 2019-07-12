@@ -10,7 +10,7 @@ p {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 div.wrapper {
@@ -24,7 +24,7 @@ div.container {
     margin: auto;
     color: white;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: .5fr .5fr .5fr .5fr 2fr;
     grid-template-columns: 1fr 10fr 10fr 1fr;
     align-items: center;
     align-items: start;
