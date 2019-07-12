@@ -6,21 +6,31 @@ body {
     font-family: monospace;
 }
 
+p {
+    margin: .5rem 0;
+}
+
 div.wrapper {
     width: 100%;
-    height: 1440px;
-    /* height: 700px; */
     margin: auto;
     background: rgba(0,0,0,0);
+    /* background-image: url("../images/wordGameBackground1440.png"); */
+}
+
+div.container {
+    width: 100%;
+    /* height: 700px; */
+    margin: auto;
+    /* background: rgba(0,0,0,0); */
     color: white;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 2fr 2fr 10fr;
-    grid-template-columns: 1fr 8fr 8fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr 2fr;
+    grid-template-columns: 1fr 10fr 10fr 1fr;
     align-items: center;
-    background-image: url("../images/wordGameBackground1440.png");
+    /* background-image: url("../images/wordGameBackground1440.png"); */
     align-items: start;
     -webkit-text-stroke: 0px;
-    grid-gap: 10px;
+    grid-gap: 5px;
 }
 
 
@@ -31,11 +41,8 @@ div.wrapper {
 } */
 
 div.title {
-    /* font-family: "Georgia"; */
-    font-size: 2rem;
     text-align: center;
-    grid-column-start: 2;
-    grid-column-end: 4;
+    grid-column: 2 / span 2 ;
 }
 
 div.content {
@@ -47,7 +54,7 @@ div.content {
     letter-spacing: .5rem;
 }
 
-p.instructions {
+div.instructions {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;
@@ -55,13 +62,39 @@ p.instructions {
     text-align: center;
 }
 
-div.feedback {
+/* div.feedback {
     padding: 10px;
-    grid-column: 2 / span 2;
+    grid-column: 2 / span 2; */
     /* grid-column-end: 4; */
-    grid-row-start: 4;
+    /* grid-row-start: 4;
     text-align: center;
     justify-content: top;
+} */
+
+div.scoreboard {
+    grid-column-start: 2;
+    /* grid-column-end: 3; */
+    grid-row-start: 4;
+    font-size: 1.5rem;
+    text-align: center;
+    /* height: 50%; */
+}
+
+div.scoreboard p {
+    text-align: center;
+}
+
+div.guesses {
+    grid-column-start: 3;
+    /* grid-column-end: 4; */
+    grid-row-start: 4;
+    font-size: 1.5rem;
+    text-align: center;
+    /* height: 50%; */
+}
+
+div p.guesses {
+    text-align: center;
 }
 
 div.letters {
@@ -75,24 +108,54 @@ div.letters {
 
 div p.letters {
     letter-spacing: .5rem;
-}
-
-div.scoreboard {
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-row-start: 6;
-    font-size: 2rem;
-    text-align: center;
-    /* height: 50%; */
-}
-
-div.content, div.feedback, div.letters, div.scoreboard {
-    background: rgba(87, 87, 87, 0.6);
-
-}
-
-div.letters, div.scoreboard {
     height: 100%;
+    font-size: 1.3rem;
+}
+
+div {
+    background: rgba(87, 87, 87, 0.6);
+}
+
+div.title, div.instructions, div.container, div.scoreboardCS {
+    background: none;
+}
+
+div.letters, div.scoreboard, div.guesses {
+    height: 100%;
+}
+
+footer.pageFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-style: italic;
+    text-align: center;
+    background: black url('../images/ocean.jpg') repeat;
+}
+
+footer p {
+    color: white;
+    font-size: .6rem;
+}
+
+@media screen and (min-width: 1024px) {
+
+    p {
+        margin: .5rem 0;
+    }
+
+    div.wrapper {
+        width: 100%;
+        margin: auto;
+        background: rgba(0,0,0,0);
+        background-image: url("../images/wordGameBackground1440.png");
+    }
+
+    div.container {
+        grid-template-rows: 1fr 1fr 1fr 1fr 2fr 20fr;
+        grid-template-columns: 1fr 8fr 8fr 1fr;
+    }
 }
 
 
@@ -101,60 +164,17 @@ div.content, div.feedback, div.title, p.instructions {
 }
 
 @media screen and (min-width:1366px) {
-
-    div.content, div.feedback, div.title, p.instructions, div.letters, div.scoreboard {
-        font-size: 2rem;
-    }
     
-    div.wrapper {
-        -webkit-text-stroke: 1px black;
-        grid-template-rows: 1fr 1fr 1fr 1fr 6fr;
+    div.container {
         grid-gap: 10px;
+        width: 80%;
     }
-
-    div.letters, div.scoreboard {
-        grid-row: 5;
-    }
-    
-    div.letters {
-        grid-column: 2 / 3;
-    }
-
-    div.scoreboard {
-        grid-column: 3 / 4;
-    }
-
-    div.letters, div.scoreboard {
-        height: 25%;
-    }
-
 }
 
 @media screen and (min-width:1920px) {
     
-    div.wrapper {
-        width: 80%;
-        -webkit-text-stroke: 1px black;
-        grid-template-rows: 1fr 1fr 1fr 1fr 6fr;
-    }
-
-    div.content, div.feedback, div.title, p.instructions, div.letters, div.scoreboard {
-        font-size: 3rem;
-    }
-
-    div.letters, div.scoreboard {
-        grid-row: 5;
-    }
-    
-    div.letters {
-        grid-column: 2 / 3;
-    }
-
-    div.scoreboard {
-        grid-column: 3 / 4;
-    }
-
-    div.letters, div.scoreboard {
-        height: 25%;
+    div.container {
+        grid-gap: 10px;
+        width: 60%;
     }
 }
