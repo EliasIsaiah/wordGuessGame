@@ -8,6 +8,7 @@ $(document).ready(function () {
         randomWord: "",
         rWordLength: 0,
         wordGuess: "",
+        lettersUsed: [],
         // input: "",
 
         getRandomWord: function () {
@@ -19,29 +20,59 @@ $(document).ready(function () {
             $("div.content").html(content);
         },
 
-    }
+        newWordGuess: function (input) {
 
-    function newWordGuess(input) {
+            let wordArr = game.randomWord.split("");
+            let guessArr = game.wordGuess.split("");
+            console.log("wordArr: " + wordArr);
+            console.log("guessArr: " + guessArr);
+            console.log("input: " + input);
 
-        let wordArr = game.randomWord.split("");
-        let guessArr = game.wordGuess.split("");
-        console.log("wordArr: " + wordArr);
-        console.log("guessArr: " + guessArr);
-        console.log("input: " + input);
+            for (let i = 0; i < game.rWordLength; i++) {
+                console.log("wordArr[ " + i + " ] = " + wordArr[i]);
+                console.log("wordArr[i] === input = " + wordArr[i] === input);
+                if (wordArr[i] === input) {
+                    guessArr[i] = input;
+                    console.log("character replaced");
+                }
+            };
 
+            game.wordGuess = guessArr.join("");
+            console.log("game.wordGuess: " + game.wordGuess);
+        },
 
-        for (let i = 0; i < game.rWordLength; i++) {
-            console.log("wordArr[ " + i + " ] = " + wordArr[i]);
-            console.log("wordArr[i] === input = " + wordArr[i] === input);
-            if (wordArr[i] === input) {
-                guessArr[i] = input;
-                console.log("character replaced");
+        letterIsUsed: function (letter) {
+
+            if (jQuery.inArray(letter, this.lettersUsed) > -1 ) {
+                return true;
             }
-        };
+        },
 
-        game.wordGuess = guessArr.join("");
-        console.log("game.wordGuess: " + game.wordGuess);
+        addLetter: function (letter) {
+            if(!this.letterIsUsed(letter)) {
+                this.lettersUsed += letter;
+                // console.log("letters used: " + this.lettersUsed);
+                let newText = this.lettersUsed.toString();
+                $("div p.letters").text(newText);
+                console.log("array to string: " + this.lettersUsed.toString() );
+            }
+        },
+
+        update: function (index, game) {
+            //Add the letter to the list of used letters
+            this.addLetter(input);
+
+            if (index < 0) {
+                console.log("letter is not contained in the array");
+            }
+            else {
+                game.newWordGuess(input);
+                console.log("game.wordGuess: " + game.wordGuess);
+                game.updateContent(game.wordGuess);
+            }
+        }
     }
+
 
     //generate a randowm word from the array by calling the getRandomWord(); function/method
     game.getRandomWord();
@@ -74,16 +105,7 @@ $(document).ready(function () {
 
         //index = -1 if the input is not contained in the array, and another value if it is
         let index = jQuery.inArray(input, game.randomWord);
-        if (index < 0) {
-            console.log("letter is not contained in the array");
-        } else {
-            newWordGuess(input);
-
-            console.log("game.wordGuess: " + game.wordGuess);
-
-            game.updateContent(game.wordGuess);
-            // swapLetters(index, input);
-        }
+        game.update(index, game);
     });
 
     //function getRandowmWord() generates a random word when called and assigns it to the appropriate game object variables

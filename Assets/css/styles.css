@@ -14,12 +14,13 @@ div.wrapper {
     background: rgba(0,0,0,0);
     color: white;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 10fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 2fr 2fr 10fr;
     grid-template-columns: 1fr 8fr 8fr 1fr;
     align-items: center;
     background-image: url("../images/wordGameBackground1440.png");
     align-items: start;
     -webkit-text-stroke: 0px;
+    grid-gap: 10px;
 }
 
 
@@ -47,6 +48,14 @@ div.content {
     letter-spacing: .5rem;
 }
 
+p.instructions {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    font-size: 2rem;
+    text-align: center;
+}
+
 div.feedback {
     padding: 10px;
     grid-column: 2 / span 2;
@@ -57,20 +66,32 @@ div.feedback {
     background: rgba(87, 87, 87, 0.4);
 }
 
-p.instructions {
+div.letters {
     grid-column-start: 2;
     grid-column-end: 4;
-    grid-row-start: 2;
+    grid-row-start: 5;
     font-size: 2rem;
     text-align: center;
+    background: rgba(87, 87, 87, 0.4);
+    /* height: 50%; */
 }
 
-p.gameFeedback {
+div p.letters {
+    letter-spacing: .5rem;
+}
+
+div.scoreboard {
     grid-column-start: 2;
     grid-column-end: 4;
-    grid-row-start: 2;
+    grid-row-start: 6;
     font-size: 2rem;
     text-align: center;
+    background: rgba(87, 87, 87, 0.4);
+    /* height: 50%; */
+}
+
+div.letters, div.scoreboard {
+    height: 100%;
 }
 
 
@@ -79,33 +100,60 @@ div.content, div.feedback, div.title, p.instructions {
 }
 
 @media screen and (min-width:1366px) {
-/*     
-    div.wrapper {
-        width: 80%;
-    } */
 
-    div.content, div.feedback, div.title, p.instructions {
+    div.content, div.feedback, div.title, p.instructions, div.letters, div.scoreboard {
         font-size: 2rem;
     }
     
     div.wrapper {
         -webkit-text-stroke: 1px black;
-        grid-template-rows: 1fr 1fr 1fr 6fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 6fr;
+        grid-gap: 10px;
     }
+
+    div.letters, div.scoreboard {
+        grid-row: 5;
+    }
+    
+    div.letters {
+        grid-column: 2 / 3;
+    }
+
+    div.scoreboard {
+        grid-column: 3 / 4;
+    }
+
+    div.letters, div.scoreboard {
+        height: 50%;
+    }
+
 }
 
 @media screen and (min-width:1920px) {
     
     div.wrapper {
         width: 80%;
+        -webkit-text-stroke: 1px black;
+        grid-template-rows: 1fr 1fr 1fr 1fr 6fr;
     }
 
-    div.content, div.feedback, div.title, p.instructions {
+    div.content, div.feedback, div.title, p.instructions, div.letters, div.scoreboard {
         font-size: 3rem;
     }
+
+    div.letters, div.scoreboard {
+        grid-row: 5;
+    }
     
-    div.wrapper {
-        -webkit-text-stroke: 1px black;
-        grid-template-rows: 1fr 1fr 1fr 6fr;
+    div.letters {
+        grid-column: 2 / 3;
+    }
+
+    div.scoreboard {
+        grid-column: 3 / 4;
+    }
+
+    div.letters, div.scoreboard {
+        height: 50%;
     }
 }
