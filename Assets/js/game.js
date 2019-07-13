@@ -8,7 +8,6 @@ $(document).ready(function () {
             "vista", "hiking", "underbrush", "foliage", "fauna"],
         randomWord: "",
         rWordLength: 0,
-        // score: 0,
         guesses: 12,
         wins: 0,
         losses: 0,
@@ -40,7 +39,7 @@ $(document).ready(function () {
             for (let i = 0; i < object.rWordLength; i++) {
                 object.wordGuess += "_";
             }
-            
+
             object.updateContent(object.wordGuess);
         },
 
@@ -84,19 +83,19 @@ $(document).ready(function () {
             else {
                 object.newWordGuess(input);
                 object.updateContent(object.wordGuess);
-                
+
             }
         },
 
-        isGameOver: function() {
-            if(this.guesses < 1 ) {
+        isGameOver: function () {
+            if (this.guesses < 1) {
                 this.losses++;
                 $("p.scoreboardL").text("L: " + this.losses);
                 return true;
-            } else if(this.wordGuess === this.randomWord) {
+            } else if (this.wordGuess === this.randomWord) {
                 this.wins++;
                 $("p.scoreboardW").text("W: " + this.wins);
-                
+
                 return true;
             }
         }
@@ -118,7 +117,7 @@ $(document).ready(function () {
         let index = jQuery.inArray(input, game.randomWord);
         game.update(index, game);
 
-        if(game.isGameOver()) {
+        if (game.isGameOver()) {
             game.initGame(game);
         }
     });
