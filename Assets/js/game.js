@@ -1,4 +1,4 @@
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
 
     const MAX_GUESSES = 12;
 
@@ -14,6 +14,11 @@ $(document).ready(function () {
         wordGuess: "",
         lettersUsed: [],
         input: "",
+        lettersP: undefined,
+        guessesP: undefined,
+        scoreboardLP: document.getElementById("scoreboardL"),
+        scoreboardWP: document.getElementById("scoreboardW"),
+        contentDIV: document.getElementsByClassName("content")[0],
 
         getRandomWord: function () {
             this.randomWord = this.words[Math.floor(Math.random() * this.words.length)];
@@ -21,18 +26,22 @@ $(document).ready(function () {
         },
 
         updateContent: function (content) {
-            $("div.content").html(content);
+            this.contentDIV.innerHTML = content;
         },
 
         initGame: function (object) {
 
             this.wordGuess = "";
-            $("div p.letters").empty();
-            $("div.content").empty();
+            let lettersElements = document.getElementsByClassName("letters");
+            this.lettersP = Array.from(lettersElements).find(element => element.nodeName === "P");
+
+            this.lettersP.innerHTML = "";
+            this.contentDIV.innerHTML = "";
             this.lettersUsed = [];
             this.guesses = 12;
-            $("p.guesses").text(this.guesses);
-            // this.score = 0;
+            let guessesElements = document.getElementsByClassName("guesses");
+            this.guessesP = Array.from(guessesElements).find(element => element.nodeName === "P");
+            this.guessesP.textContent = this.guesses;
 
             this.getRandomWord();
 
@@ -58,17 +67,14 @@ $(document).ready(function () {
         },
 
         letterIsUsed: function (letter) {
-
-            if (jQuery.inArray(letter, this.lettersUsed) > -1) {
-                return true;
-            }
+            return this.lettersUsed.findIndex(usedLetter => usedLetter === letter) > -1;
         },
 
         addLetter: function (letter) {
             if (!this.letterIsUsed(letter)) {
-                this.lettersUsed += letter;
+                this.lettersUsed.push(letter);
                 let newText = this.lettersUsed.toString();
-                $("div p.letters").text(newText);
+                this.lettersP.textContent = newText;
             }
         },
 
@@ -78,7 +84,7 @@ $(document).ready(function () {
 
             if (index < 0) {
                 this.guesses--;
-                $("p.guesses").text(this.guesses);
+                this.guessesP.textContent = this.guesses;
             }
             else {
                 object.newWordGuess(input);
@@ -90,11 +96,11 @@ $(document).ready(function () {
         isGameOver: function () {
             if (this.guesses < 1) {
                 this.losses++;
-                $("p.scoreboardL").text("L: " + this.losses);
+                this.scoreboardLP.textContent = `L: ${this.losses}`;
                 return true;
             } else if (this.wordGuess === this.randomWord) {
                 this.wins++;
-                $("p.scoreboardW").text("W: " + this.wins);
+                this.scoreboardWP.textContent = `W: ${this.wins}`;
 
                 return true;
             }
@@ -102,19 +108,19 @@ $(document).ready(function () {
     }
 
     //set the initial game content html content to nothing
-    $("div.content").empty();
+    game.contentDIV.innerHTML = "";
 
     game.initGame(game);
 
     //function utilizing and event listener to record the player's keypresses
-    $(document).keyup(function (event) {
+    document.addEventListener("keyup", (event) => {
 
 
         //get the user input and normalize it
         input = event.key.toLowerCase();
 
         //index = -1 if the input is not contained in the array
-        let index = jQuery.inArray(input, game.randomWord);
+        let index = game.randomWord.split("").findIndex(char => char === input);
         game.update(index, game);
 
         if (game.isGameOver()) {
